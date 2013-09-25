@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}Blog posts | {% endblock %}
+
+{% block page_content %}
+<h1>Blog Posts</h1>
+<ul>
+    {% for post in post_list %}
+    <!--NICE AGRS ..check django official doc for URL tag-->
+    <li><a href="{% url "post-details" pk=post.id %}">{{ post.title }}</a></li>
+    {% empty %}
+    <li>Sorry, no posts yet. Check back soon!</li>
+    {% endfor %}
+</ul>
+{% endblock %}
