@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', blog.views.BlogListView.as_view(), name='home'),
+    url(r'^newpost$', blog.views.CreateForm.as_view(), name='post-form'),
     # url(r'^microblog/', include('microblog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
