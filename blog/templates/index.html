@@ -5,9 +5,9 @@
 {% block page_content %}
 <h1>Blog Posts</h1>
 <ul>
-    {% for post in post_list %}
+    {% for post in mayrok %}
     <!--NICE AGRS ..check django official doc for URL tag-->
-    <li><a href="{% url "post-details" post.id %}">{{ post.title }}</a><a href="{% url "update-form" post.id %}"> UPDATE </a></li>
+    <li><a href="{% url "post-details" post.id %}">{{ post.title }}</a><a href="{% url "update-form" slug=post.slug %}"> UPDATE </a></li>
     {% empty %}
     <li>Sorry, no posts yet. Check back soon!</li>
     {% endfor %}

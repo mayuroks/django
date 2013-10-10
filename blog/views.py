@@ -12,6 +12,11 @@ from blog.models import Post
 class BlogListView(ListView):
 	model = Post
 	template_name = "index.html"	# Magic happens here
+	# context_object_name = "mayrok"
+	def get_context_data(self, **kwargs):
+		context = super(BlogListView, self).get_context_data(**kwargs)
+		context['mayrok'] = Post.objects.all()
+		return context
 
 class PostDetailView(DetailView):
 	model = Post
@@ -30,7 +35,6 @@ class UpdateFormView(UpdateView):
 	template_name = "create_post_form.html"
 	form_class = forms.UpdatePost
 	success_url = "/"
-	
+
 	def get_object(self, queryset=None):
-		obj = Post.objects.get(id=self.kwargs['id'])
-		return obj
+		return Post.objects.get(slug=self.kwargs['slug'])
