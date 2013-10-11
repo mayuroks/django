@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', blog.views.BlogListView.as_view(), name='home'),
     url(r'^newpost$', blog.views.CreateFormView.as_view(), name='post-form'),
     url(r'post-update/(?P<slug>[-\w]+)/$', blog.views.UpdateFormView.as_view(), name="update-form"),
+	url(r'^accounts/', include('registration.backends.default.urls')),
     # url(r'^microblog/', include('microblog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

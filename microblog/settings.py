@@ -1,4 +1,5 @@
 # Django settings for microblog project.
+from registration_defaults.settings import *
 import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -122,10 +123,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
+    'registration_defaults',
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'blog',
+    'blog','registration',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
