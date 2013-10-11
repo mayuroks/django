@@ -7,3 +7,4 @@ class FormPost(forms.ModelForm):
 class UpdatePost(forms.ModelForm):
 	class Meta:
 		model = Post
+		exclude = ('published',)
