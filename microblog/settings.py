@@ -1,5 +1,4 @@
 # Django settings for microblog project.
-from registration_defaults.settings import *
 import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
