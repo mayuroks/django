@@ -51,7 +51,7 @@ class VidDetails(DetailView):
 	model = Colin
 	template_name = "video_details.html"
 	## URL vids-details
-	# context_object_name = "vid"	
+	context_object_name = "vid"	
 
 class VidUpload(CreateView):
 	model = Colin
