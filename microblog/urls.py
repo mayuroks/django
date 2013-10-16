@@ -12,6 +12,10 @@ urlpatterns = patterns('',
     url(r'^newpost$', blog.views.CreateFormView.as_view(), name='post-form'),
     url(r'post-update/(?P<slug>[-\w]+)/$', blog.views.UpdateFormView.as_view(), name="update-form"),
 	
+    ## VIDEO URLS
+    url(r'^vids$', blog.views.VidList.as_view(), name="vlist"),
+    url(r'^vids-upload$', blog.views.VidUpload.as_view(), name="vupload"),
+    url(r'^vids-details/(?P<pk>\d+)/$', blog.views.VidDetails.as_view(), name="vdetails"),
     # url(r'^microblog/', include('microblog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

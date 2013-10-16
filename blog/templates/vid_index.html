@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block vid_title %}Blog posts | {% endblock %}
+
+{% block page_content %}
+<h1>VIDEO Posts</h1>
+<ul>
+    {% for vid in vid_list %}
+    <!--NICE AGRS ..check django official doc for URL tag-->
+    <li><a href="{% url "vdetails" vid.id %}">{{ vid.myname }}</a></li>
+    {% empty %}
+    <li>Sorry, no posts yet. Check back soon!</li>
+    {% endfor %}
+</ul>
+{% endblock %}

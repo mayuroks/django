@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Post
+from blog.models import Post, Colin
 from django.template.defaultfilters import slugify 
 class FormPost(forms.ModelForm):
 	class Meta:
@@ -19,3 +19,7 @@ class UpdatePost(forms.ModelForm):
 	class Meta:
 		model = Post
 		exclude = ('published',)
+
+class VidPost(forms.ModelForm):
+	class Meta:
+		model = Colin

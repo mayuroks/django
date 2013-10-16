@@ -6,7 +6,7 @@ from django.views.generic import DetailView, CreateView, UpdateView
 from blog import forms
 
 # Import your Tables/ Models
-from blog.models import Post
+from blog.models import Post, Colin
 
 # Make your view classes
 class BlogListView(ListView):
@@ -38,3 +38,32 @@ class UpdateFormView(UpdateView):
 
 	def get_object(self, queryset=None):
 		return Post.objects.get(slug=self.kwargs['slug'])
+
+
+## VIDEOS
+class VidList(ListView):
+	model = Colin
+	template_name = "vid_index.html"
+	## URL vids
+	context_object_name = "vid_list"
+
+class VidDetails(DetailView):
+	model = Colin
+	template_name = "video_details.html"
+	## URL vids-details
+	# context_object_name = "vid"	
+
+class VidUpload(CreateView):
+	model = Colin
+	form_class = forms.VidPost
+	template_name = "create_post_form.html"
+	## URL vids-upload
+	success_url = "/vids"
+
+
+
+
+
+
+
+
