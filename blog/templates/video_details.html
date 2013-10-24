@@ -9,8 +9,9 @@
 <h1>VIDEO Posts</h1>
 <ul>
     {% for vid in vid_list %}
-    <!--NICE AGRS ..check django official doc for URL tag-->
-    <li>{{ vid.myname }}{{vid.video|embed:'small'}}</li>
+    {% video vid.video as my_video %}
+    	Thumbnail: <a href="{% url "vdetails" vid.id %}"><img src="{{ my_video.thumbnail }}" height="155" width="210"></a>
+	{% endvideo %}
     {% empty %}
     <li>Sorry, no posts yet. Check back soon!</li>
     {% endfor %}
