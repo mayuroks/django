@@ -4,5 +4,16 @@
 <h1>VIDEO DETAILS</h1>
 {% block page_content %}
 <h1>VID NAME {{ vid.myname }}</h1>
-<p>URL {{ vid.video|embed:'small' }}</p>
+<p>URL {{ vid.video|embed:'medium' }}</p>
+
+<h1>VIDEO Posts</h1>
+<ul>
+    {% for vid in vid_list %}
+    {% video vid.video as my_video %}
+    	Thumbnail: <a href="{% url "vdetails" vid.id %}"><img src="{{ my_video.thumbnail }}" height="155" width="210"></a>
+	{% endvideo %}
+    {% empty %}
+    <li>Sorry, no posts yet. Check back soon!</li>
+    {% endfor %}
+</ul>
 {% endblock %}

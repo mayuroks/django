@@ -59,6 +59,11 @@ class VidDetails(DetailView):
 	## URL vids-details
 	context_object_name = "vid"	
 
+	def get_context_data(self, **kwargs):
+		context = super(VidDetails, self).get_context_data(**kwargs)
+		context['vid_list'] = Colin.objects.filter(id__lt=10)
+		return context
+		
 class VidUpload(CreateView):
 	model = Colin
 	form_class = forms.VidPost
