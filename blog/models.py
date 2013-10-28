@@ -13,8 +13,8 @@ class Post(models.Model):
 	content = models.TextField()
 	published = models.BooleanField(default=True)
 
-def __unicode__(self):
-	return self.title
+	def __unicode__(self):
+		return self.title
 
 class ExUserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -32,3 +32,9 @@ class ExUserProfile(models.Model):
 class Colin(models.Model):
 	myname = models.CharField(max_length=255,)
 	video = EmbedVideoField()
+
+	def __unicode__(self):
+		return self.myname
+
+
+

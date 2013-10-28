@@ -127,7 +127,12 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'blog','registration','south','embed_video',
+    'djcelery','kombu.transport.django','clrytest',
+    'csvimport','import_export','tastypie',
 )
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = "django://"
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 

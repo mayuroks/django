@@ -1,6 +1,5 @@
 # Import your generic views here.
-from django.views.generic import ListView
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 #from blog.forms import FormPost, UpdatePost
 from blog import forms
@@ -39,7 +38,14 @@ class UpdateFormView(UpdateView):
 	def get_object(self, queryset=None):
 		return Post.objects.get(slug=self.kwargs['slug'])
 
+class PostDeleteView(DeleteView):
+	model = Post
+	template_name = "post_delete.html"
+	success_url = "/"
 
+	def get_object(self, queryset=None):
+		return Post.objects.get(slug=self.kwargs['slug'])
+		
 ## VIDEOS
 class VidList(ListView):
 	model = Colin

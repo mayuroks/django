@@ -7,7 +7,9 @@
 <ul>
     {% for post in mayrok %}
     <!--NICE AGRS ..check django official doc for URL tag-->
-    <li><a href="{% url "post-details" post.id %}">{{ post.title }}</a><a href="{% url "update-form" slug=post.slug %}"> UPDATE </a></li>
+    <li><a href="{% url "post-details" post.id %}">{{ post.title }}</a>
+    	<a href="{% url "update-form" slug=post.slug %}"> UPDATE </a>
+    	<a href="{% url "post-delete" slug=post.slug %}"> DELETE </a></li>
     {% empty %}
     <li>Sorry, no posts yet. Check back soon!</li>
     {% endfor %}
