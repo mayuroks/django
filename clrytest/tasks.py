@@ -2,7 +2,8 @@
 from celery import task
 from requests import get
 from BeautifulSoup import BeautifulSoup
-import re 
+import re, json
+from requests import post 
 @task
 def add(x, y):
 	return x + y
@@ -26,7 +27,11 @@ def my_info_fetcher(url_str=""):
 		print "TITLE = %s , ARTIST = %s, URL = %s" % (title,artist,youtube_url)
 		# CALL api/q?=artist= group0 & title = group1 & youtube_url = group2
 			# to directly fill the form and populate
-
+		payload = {"title": title, "artist" : {"name": artist}, "video": youtube_url}
+		#url = "http://127.0.0.1:8000/api/v1/video/"
+        url = "http://lmvapp.herokuapp.com/api/v1/video/"
+        r = post(url,json.dumps(payload), headers = {'content-type': 'application/json'})
+        return r.status_code
 
 
 
