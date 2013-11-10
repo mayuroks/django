@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<form action="{% url 'watson:search' %}">
+    <input name="q" value="{{request.GET.q}}">
+    <input type="submit" value="Go">
+</form>
+
+
+<ul>
+    {% for result in search_results %}
+        <li>
+            <article>
+                <h1>
+                    {% if result.url %}<a href="{{result.url}}">{% endif %}
+                    {{result.title}}
+                    {% if result.url %}</a>{% endif %}
+                </h1>
+                {% if result.title %}
+                    <p>{{result.title}}</p>
+                {% endif %}
+            </article>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

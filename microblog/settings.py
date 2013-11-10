@@ -61,7 +61,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = 'static'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,6 +72,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join( os.path.dirname( __file__ ), 'static' ),
 )
 
 # List of finder classes that know how to find static files in
@@ -106,12 +107,13 @@ ROOT_URLCONF = 'microblog.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'microblog.wsgi.application'
-
+from photologue import PHOTOLOGUE_APP_DIR
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join( os.path.dirname( __file__ ), 'templates' ),
+    PHOTOLOGUE_APP_DIR,
 )
 
 INSTALLED_APPS = (
@@ -128,7 +130,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'blog','registration','south','embed_video',
     'djcelery','kombu.transport.django','clrytest',
-    'csvimport','import_export','tastypie',
+    'csvimport','import_export','tastypie','watson',
+    'scribbler','inplaceeditform',
 )
 import djcelery
 djcelery.setup_loader()
@@ -171,3 +174,25 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mayuroks@gmail.com'
 EMAIL_HOST_PASSWORD = 'xxxxcccccc'
 EMAIL_USE_TLS = True
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # Other context processors would go here
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+)
+
+INPLACEEDIT_EDIT_EMPTY_VALUE = 'Double click to edit'
+INPLACEEDIT_AUTO_SAVE = True
+INPLACEEDIT_EVENT = "dblclick"
+INPLACEEDIT_DISABLE_CLICK = True  # For inplace edit text into a link tag
+INPLACEEDIT_EDIT_MESSAGE_TRANSLATION = 'Write a translation' # transmeta option
+INPLACEEDIT_SUCCESS_TEXT = 'Successfully saved'
+INPLACEEDIT_UNSAVED_TEXT = 'You have unsaved changes'
+INPLACE_ENABLE_CLASS = 'enable'
+DEFAULT_INPLACE_EDIT_OPTIONS = {} # dictionnary of the optionals parameters that the templatetag can receive to change its behavior (see the Advanced usage section)
+DEFAULT_INPLACE_EDIT_OPTIONS_ONE_BY_ONE = True # modify the behavior of the DEFAULT_INPLACE_EDIT_OPTIONS usage, if True then it use the default values not specified in your template, if False it uses these options only when the dictionnary is empty (when you do put any options in your template)
+# ADAPTOR_INPLACEEDIT_EDIT = 'app_name.perms.MyAdaptorEditInline' # Explain in Permission Adaptor API
+ADAPTOR_INPLACEEDIT = {'myadaptor': 'app_name.fields.MyAdaptor'} # Explain in Adaptor API
+INPLACE_GET_FIELD_URL = None # to change the url where django-inplaceedit use to get a field
+INPLACE_SAVE_URL = None # to change the url where django-inplaceedit use to save a field
+

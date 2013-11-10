@@ -1,6 +1,17 @@
+{% load staticfiles %}
+{% load inplace_edit %}
 <!doctype html>
 <html>
     <head>
+    	<link rel="stylesheet" href="{% static "scribbler/css/scribbler.css" %}">
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-responsive.css" %}">
+		<script data-main="{% static "scribbler/js/scribbler-min" %}" src="{% static "scribbler/libs/require.js" %}"></script>
+		
+		<script src="{% static "inplace/js/jquery-1.10.1.min.js" %}"></script>
+		<!--script src="{{ STATIC_URL }}inplace/js/jquery.min.js"></script-->
+		
+		{% inplace_js 1 1 %} {% comment %} or inplace_js 1 0 {% endcomment %}
         <title>{% block page_title %}{% endblock %}Microblog</title>
     </head>
     <body>

@@ -1,9 +1,13 @@
 from django.conf.urls import patterns, include, url
 import blog.views
 from blog.api import ColinResource
-
+from photologue.sitemaps import GallerySitemap, PhotoSitemap
 colin_resource = ColinResource()
 
+sitemaps = {
+            'photologue_galleries': GallerySitemap,
+            'photologue_photos': PhotoSitemap,
+            }
 
 urlpatterns = patterns('',
     url(r'^api/', include(colin_resource.urls)),
@@ -19,4 +23,8 @@ urlpatterns = patterns('',
     # url(r'^microblog/', include('microblog.foo.urls')),
 
     url(r"^blog/(?P<pk>\d+)/$", blog.views.PostDetailView.as_view(), name="post-details"),
+    url(r"^search/", include("watson.urls", namespace="watson")),
+    url(r'^scribbler/', include('scribbler.urls')),
+    (r'^inplaceeditform/', include('inplaceeditform.urls')),
+    (r'^photologue/', include('photologue.urls')),
 )
