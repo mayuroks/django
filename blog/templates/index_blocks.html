@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_title %}Blog posts | {% endblock %}
+
+{% block page_content %}
+<h1>Blog Posts</h1>
+<div class="container-fluid">
+    <div class="span18">
+    	<div class="row-fluid">
+<ul>
+    {% for post in mayrok %}
+    <!--NICE AGRS ..check django official doc for URL tag-->
+    <!-- <li><a href="{% url "post-details" post.id %}">{{ post.title }}</a> -->
+    <a href="{% url "post-details" post.id %}">
+    	<div class="span2">
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.content|truncatechars:100}}</p>
+    </a>
+              <p><a class="btn" href="{% url "update-form" slug=post.slug %}">UPDATE »</a></p>
+
+              <p><a class="btn" href="{% url "post-delete" slug=post.slug %}">DELETE »</a></p>
+    		<!-- <a href="{% url "update-form" slug=post.slug %}"> UPDATE </a>
+    		<a href="{% url "post-delete" slug=post.slug %}"> DELETE </a></li> -->
+			</div><!--/span-->	    	
+    	
+    {% empty %}
+    <li>Sorry, no posts yet. Check back soon!</li>
+    {% endfor %}
+</ul>
+
+		</div>
+	</div><!--/span-->
+</div>
+<!-- <div class="container-fluid">
+        <div class="span9">
+          
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+            
+          </div><!--/row-->
+        </div><!--/span-->
+    </div> -->
+{% endblock %}

@@ -10,7 +10,7 @@ from blog.models import Post, Colin
 # Make your view classes
 class BlogListView(ListView):
 	model = Post
-	template_name = "index.html"	# Magic happens here
+	template_name = "index_blocks.html"	# Magic happens here
 	# context_object_name = "mayrok"
 	def get_context_data(self, **kwargs):
 		context = super(BlogListView, self).get_context_data(**kwargs)

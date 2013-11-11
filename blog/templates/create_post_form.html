@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block page_content %}
 <form action="{{ action }}" method="POST">
 	{% csrf_token %}
 	<ul>
@@ -5,3 +7,4 @@
 	</ul>
 	<input type="submit" value="Save" />
 </form>
+{% endblock %}
